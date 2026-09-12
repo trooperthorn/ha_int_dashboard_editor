@@ -10,7 +10,9 @@ wsl -e bash -lc 'cd /mnt/c/Users/<you>/repos/ha_int_dashboard_editor && ~/socven
 ```
 
 Venv: `python3.14 -m venv ~/socvenv && ~/socvenv/bin/pip install -r requirements_test.txt`.
-The harness pin 0.13.364 installs core 2026.9.1; CI asserts that version. The full
+The harness pin 0.13.364 installs core 2026.9.1; CI asserts that version. The
+frontend package is pinned to the version core constrains because the panel tests
+set up the real `frontend` and `panel_custom` components. The full
 gate is `ruff check`, `mypy --python-version 3.14 custom_components/dashboard_editor/`,
 `pytest tests`, the frontend bundle drift check, and
 `python scripts/build_release_artifacts.py --validate-only`.
