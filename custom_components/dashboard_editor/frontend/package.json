@@ -1,0 +1,22 @@
+{
+  "name": "dashboard-editor-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Sidebar panel for the Dashboard Editor Home Assistant integration.",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "dependencies": {
+    "lit": "^3.3.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "rollup": "^4.63.1",
+    "tslib": "^2.6.3",
+    "typescript": "^5.9.2"
+  }
+}

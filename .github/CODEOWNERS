@@ -1,0 +1,4 @@
+# The component, its delivery pipeline, and the security policy need owner review.
+/custom_components/dashboard_editor/ @trooperthorn
+/.github/workflows/ @trooperthorn
+/SECURITY.md @trooperthorn

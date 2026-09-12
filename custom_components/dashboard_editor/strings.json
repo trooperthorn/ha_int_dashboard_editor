@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add the Dashboard editor",
+        "description": "Adds a sidebar panel for administrators that opens YAML-mode dashboards in Home Assistant's own editor and writes the changes back to their files."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "The Dashboard editor is already set up."
+    }
+  }
+}

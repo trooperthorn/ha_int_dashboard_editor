@@ -1,0 +1,23 @@
+{
+  "domain": "dashboard_editor",
+  "name": "Dashboard Editor",
+  "codeowners": [
+    "@trooperthorn"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "http",
+    "lovelace",
+    "panel_custom",
+    "websocket_api"
+  ],
+  "documentation": "https://github.com/trooperthorn/ha_int_dashboard_editor",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/trooperthorn/ha_int_dashboard_editor/issues",
+  "requirements": [
+    "ruamel.yaml==0.19.1"
+  ],
+  "single_config_entry": true,
+  "version": "2026.09.12.1"
+}

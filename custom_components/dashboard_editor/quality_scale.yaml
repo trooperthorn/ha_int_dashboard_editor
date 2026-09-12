@@ -1,0 +1,132 @@
+rules:
+  # Bronze
+  action-setup:
+    status: exempt
+    comment: No actions; the panel drives websocket commands.
+  appropriate-polling:
+    status: exempt
+    comment: Nothing is polled; every call reads the files on demand.
+  brands:
+    status: todo
+    comment: No brand icon yet (docs/backlog.md).
+  common-modules: done
+  config-flow-test-coverage: done
+  config-flow: done
+  dependency-transparency:
+    status: done
+    comment: ruamel.yaml pinned exactly; it is not constrained by core.
+  docs-actions:
+    status: exempt
+    comment: No actions.
+  docs-high-level-description: done
+  docs-installation-instructions: done
+  docs-removal-instructions: done
+  entity-event-setup:
+    status: exempt
+    comment: No entities.
+  entity-unique-id:
+    status: exempt
+    comment: No entities.
+  has-entity-name:
+    status: exempt
+    comment: No entities.
+  runtime-data:
+    status: exempt
+    comment: One stateless service object per Home Assistant run in hass.data[DOMAIN]; the entry carries nothing.
+  test-before-configure:
+    status: exempt
+    comment: Nothing to connect to.
+  test-before-setup:
+    status: exempt
+    comment: Setup only registers a panel.
+  unique-config-entry: done
+
+  # Silver
+  action-exceptions:
+    status: exempt
+    comment: No actions; websocket errors carry the file problem verbatim.
+  config-entry-unloading: done
+  docs-configuration-parameters:
+    status: exempt
+    comment: No options.
+  docs-installation-parameters:
+    status: exempt
+    comment: No parameters.
+  entity-unavailable:
+    status: exempt
+    comment: No entities.
+  integration-owner: done
+  log-when-unavailable:
+    status: exempt
+    comment: Nothing to lose.
+  parallel-updates:
+    status: exempt
+    comment: No entities.
+  reauthentication-flow:
+    status: exempt
+    comment: No credentials.
+  test-coverage: done
+
+  # Gold
+  devices:
+    status: exempt
+    comment: No devices.
+  diagnostics: done
+  discovery-update-info:
+    status: exempt
+    comment: Nothing to discover.
+  discovery:
+    status: exempt
+    comment: Nothing to discover.
+  docs-data-update:
+    status: exempt
+    comment: No data updates.
+  docs-examples: done
+  docs-known-limitations: done
+  docs-supported-devices:
+    status: exempt
+    comment: No devices.
+  docs-supported-functions: done
+  docs-troubleshooting: done
+  docs-use-cases: done
+  dynamic-devices:
+    status: exempt
+    comment: No devices.
+  entity-category:
+    status: exempt
+    comment: No entities.
+  entity-device-class:
+    status: exempt
+    comment: No entities.
+  entity-disabled-by-default:
+    status: exempt
+    comment: No entities.
+  entity-translations:
+    status: exempt
+    comment: No entities.
+  exception-translations:
+    status: todo
+    comment: File errors are literal English.
+  icon-translations:
+    status: exempt
+    comment: No entities.
+  reconfiguration-flow:
+    status: exempt
+    comment: Nothing to reconfigure.
+  repair-issues:
+    status: todo
+    comment: A repair for an unsupported dashboard file would be useful (docs/backlog.md).
+  stale-devices:
+    status: exempt
+    comment: No devices.
+
+  # Platinum
+  async-dependency:
+    status: exempt
+    comment: ruamel.yaml is synchronous and runs in the executor.
+  inject-websession:
+    status: exempt
+    comment: No network.
+  strict-typing:
+    status: todo
+    comment: mypy runs without --strict.

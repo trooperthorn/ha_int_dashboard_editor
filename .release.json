@@ -1,0 +1,9 @@
+{
+  "tag_prefix": "v",
+  "timezone": "America/Chicago",
+  "archive": {"source": "custom_components/dashboard_editor", "name": "dashboard_editor.zip"},
+  "release_paths": ["custom_components/dashboard_editor"],
+  "version_fields": [
+    {"path": "custom_components/dashboard_editor/manifest.json", "kind": "json", "key": "version"}
+  ]
+}
