@@ -69,7 +69,7 @@ const dt={attribute:!0,type:String,converter:b,reflect:!1,hasChanged:m},ht=(t=dt
                     Continue editing
                   </button>
                   <button ?disabled=${s} @click=${()=>this._preview(t)}>Preview changes</button>
-                  <button class="primary" ?disabled=${s||!i} @click=${()=>this._commit(t)}>Commit</button>
+                  <button class="primary" ?disabled=${s} @click=${()=>this._commit(t)}>Commit</button>
                   <button class="danger" ?disabled=${s} @click=${()=>this._discard(t)}>Discard</button>
                 `:q`
                   <button class="primary" ?disabled=${s||!t.supported} @click=${()=>this._open(t)}>
