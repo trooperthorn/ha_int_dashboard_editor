@@ -349,7 +349,7 @@ export class DashboardEditorPanel extends LitElement {
                     Continue editing
                   </button>
                   <button ?disabled=${busy} @click=${() => this._preview(d)}>Preview changes</button>
-                  <button class="primary" ?disabled=${busy || !plan} @click=${() => this._commit(d)}>Commit</button>
+                  <button class="primary" ?disabled=${busy} @click=${() => this._commit(d)}>Commit</button>
                   <button class="danger" ?disabled=${busy} @click=${() => this._discard(d)}>Discard</button>
                 `
               : html`
