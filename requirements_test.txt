@@ -1,4 +1,4 @@
-pytest-homeassistant-custom-component==0.13.366
+pytest-homeassistant-custom-component==0.13.367
 # The harness leaves the frontend package out; the panel tests need it, and the pin must equal the core pin in package_constraints.txt.
 home-assistant-frontend==20260826.7
 ruamel.yaml==0.19.1
