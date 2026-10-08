@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-import voluptuous as vol
+import probatio
 from homeassistant.components import websocket_api
 from homeassistant.core import HomeAssistant, callback
 
@@ -34,7 +34,7 @@ def async_register(hass: HomeAssistant) -> None:
 
 
 @websocket_api.require_admin
-@websocket_api.websocket_command({vol.Required("type"): f"{DOMAIN}/list"})
+@websocket_api.websocket_command({probatio.Required("type"): f"{DOMAIN}/list"})
 @websocket_api.async_response
 async def ws_list(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -> None:
     result = await hass.async_add_executor_job(_editor(hass).list_dashboards)
@@ -43,7 +43,7 @@ async def ws_list(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -> 
 
 @websocket_api.require_admin
 @websocket_api.websocket_command(
-    {vol.Required("type"): f"{DOMAIN}/resolve", vol.Required("dashboard_id"): str}
+    {probatio.Required("type"): f"{DOMAIN}/resolve", probatio.Required("dashboard_id"): str}
 )
 @websocket_api.async_response
 async def ws_resolve(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -> None:
@@ -58,9 +58,9 @@ async def ws_resolve(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) 
 @websocket_api.require_admin
 @websocket_api.websocket_command(
     {
-        vol.Required("type"): f"{DOMAIN}/plan",
-        vol.Required("dashboard_id"): str,
-        vol.Required("config"): dict,
+        probatio.Required("type"): f"{DOMAIN}/plan",
+        probatio.Required("dashboard_id"): str,
+        probatio.Required("config"): dict,
     }
 )
 @websocket_api.async_response
@@ -78,9 +78,9 @@ async def ws_plan(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -> 
 @websocket_api.require_admin
 @websocket_api.websocket_command(
     {
-        vol.Required("type"): f"{DOMAIN}/commit",
-        vol.Required("dashboard_id"): str,
-        vol.Required("config"): dict,
+        probatio.Required("type"): f"{DOMAIN}/commit",
+        probatio.Required("dashboard_id"): str,
+        probatio.Required("config"): dict,
     }
 )
 @websocket_api.async_response
@@ -96,7 +96,7 @@ async def ws_commit(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -
 
 
 @websocket_api.require_admin
-@websocket_api.websocket_command({vol.Required("type"): f"{DOMAIN}/config/get"})
+@websocket_api.websocket_command({probatio.Required("type"): f"{DOMAIN}/config/get"})
 @websocket_api.async_response
 async def ws_config_get(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -> None:
     try:
@@ -110,14 +110,14 @@ async def ws_config_get(hass: HomeAssistant, connection: Any, msg: dict[str, Any
 @websocket_api.require_admin
 @websocket_api.websocket_command(
     {
-        vol.Required("type"): f"{DOMAIN}/config/set",
-        vol.Required("url_path"): str,
-        vol.Required("filename"): str,
-        vol.Optional("title"): vol.Any(None, str),
-        vol.Optional("icon"): vol.Any(None, str),
-        vol.Optional("show_in_sidebar"): vol.Any(None, bool),
-        vol.Optional("require_admin"): vol.Any(None, bool),
-        vol.Optional("create_file", default=False): bool,
+        probatio.Required("type"): f"{DOMAIN}/config/set",
+        probatio.Required("url_path"): str,
+        probatio.Required("filename"): str,
+        probatio.Optional("title"): probatio.Any(None, str),
+        probatio.Optional("icon"): probatio.Any(None, str),
+        probatio.Optional("show_in_sidebar"): probatio.Any(None, bool),
+        probatio.Optional("require_admin"): probatio.Any(None, bool),
+        probatio.Optional("create_file", default=False): bool,
     }
 )
 @websocket_api.async_response
@@ -137,7 +137,7 @@ async def ws_config_set(hass: HomeAssistant, connection: Any, msg: dict[str, Any
 
 @websocket_api.require_admin
 @websocket_api.websocket_command(
-    {vol.Required("type"): f"{DOMAIN}/config/remove", vol.Required("url_path"): str}
+    {probatio.Required("type"): f"{DOMAIN}/config/remove", probatio.Required("url_path"): str}
 )
 @websocket_api.async_response
 async def ws_config_remove(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -> None:
