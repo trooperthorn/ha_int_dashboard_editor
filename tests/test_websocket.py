@@ -2,9 +2,13 @@
 
 from __future__ import annotations
 
+import threading
 from pathlib import Path
+from unittest.mock import patch
 
 from homeassistant.core import HomeAssistant
+
+from custom_components.dashboard_editor import editor as editor_module
 
 from .conftest import USER_ID
 
@@ -102,3 +106,31 @@ async def test_non_admin_is_refused(hass: HomeAssistant, hass_ws_client, setup_e
     client = await hass_ws_client(hass, hass_read_only_access_token)
     result = await _call(client, {"type": "dashboard_editor/list"})
     assert not result["success"] and result["error"]["code"] == "unauthorized"
+
+
+async def test_config_commands_build_files_off_the_event_loop(
+    hass: HomeAssistant, hass_ws_client, setup_entry, config_dir: Path
+) -> None:
+    """DashboardFiles builds a ruamel YAML object, which globs on disk, so it must be built in the executor."""
+    on_loop: list[bool] = []
+    real_files = editor_module.DashboardFiles
+
+    def recording_files(config_dir_arg):
+        on_loop.append(threading.get_ident() == hass.loop_thread_id)
+        return real_files(config_dir_arg)
+
+    client = await hass_ws_client(hass)
+    with patch.object(editor_module, "DashboardFiles", side_effect=recording_files):
+        assert (await _call(client, {"type": "dashboard_editor/config/get"}))["success"]
+        await _call(
+            client,
+            {
+                "type": "dashboard_editor/config/set",
+                "url_path": "garage-dashboard",
+                "filename": "dashboards/garage.yaml",
+                "create_file": True,
+            },
+        )
+        await _call(client, {"type": "dashboard_editor/config/remove", "url_path": "garage-dashboard"})
+    assert len(on_loop) == 3
+    assert not any(on_loop)
