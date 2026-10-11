@@ -128,3 +128,15 @@ class DashboardEditor:
 
     def dashboards_config(self) -> DashboardsConfig:
         return DashboardsConfig(self._files())
+
+    # The WebSocket handlers run these in the executor. Building DashboardsConfig
+    # constructs a ruamel YAML object, which globs its plugin directory, and
+    # resolves paths on disk, so it must not happen on the event loop.
+    def config_entries(self) -> dict[str, Any]:
+        return self.dashboards_config().entries()
+
+    def config_upsert(self, url_path: str, values: dict[str, Any], create_file: bool) -> dict[str, Any]:
+        return self.dashboards_config().upsert(url_path, values, create_file)
+
+    def config_remove(self, url_path: str) -> dict[str, Any]:
+        return self.dashboards_config().remove(url_path)

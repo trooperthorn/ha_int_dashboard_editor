@@ -100,7 +100,7 @@ async def ws_commit(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -
 @websocket_api.async_response
 async def ws_config_get(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -> None:
     try:
-        result = await hass.async_add_executor_job(_editor(hass).dashboards_config().entries)
+        result = await hass.async_add_executor_job(_editor(hass).config_entries)
     except DashboardFileError as err:
         connection.send_error(msg["id"], ERR_DASHBOARD_FILE, str(err))
         return
@@ -127,7 +127,7 @@ async def ws_config_set(hass: HomeAssistant, connection: Any, msg: dict[str, Any
     }
     try:
         result = await hass.async_add_executor_job(
-            _editor(hass).dashboards_config().upsert, msg["url_path"], values, msg["create_file"]
+            _editor(hass).config_upsert, msg["url_path"], values, msg["create_file"]
         )
     except DashboardFileError as err:
         connection.send_error(msg["id"], ERR_DASHBOARD_FILE, str(err))
@@ -142,9 +142,7 @@ async def ws_config_set(hass: HomeAssistant, connection: Any, msg: dict[str, Any
 @websocket_api.async_response
 async def ws_config_remove(hass: HomeAssistant, connection: Any, msg: dict[str, Any]) -> None:
     try:
-        result = await hass.async_add_executor_job(
-            _editor(hass).dashboards_config().remove, msg["url_path"]
-        )
+        result = await hass.async_add_executor_job(_editor(hass).config_remove, msg["url_path"])
     except DashboardFileError as err:
         connection.send_error(msg["id"], ERR_DASHBOARD_FILE, str(err))
         return
