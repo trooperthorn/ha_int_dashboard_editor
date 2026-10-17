@@ -3,4 +3,4 @@ pytest-homeassistant-custom-component==0.13.371
 home-assistant-frontend==20260930.2
 ruamel.yaml==0.19.1
 mypy==2.4.0
-ruff==0.16.10
+ruff==0.17.0
